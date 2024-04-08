@@ -21,6 +21,9 @@ N/A
 ## Technologies
 
 * React.js
+* React Three Fiber
+* React Router DOM
+* React Spring
 * Three.js
 * Tailwind CSS
 
