@@ -24,21 +24,6 @@ N/A
 * Three.js
 * Tailwind CSS
 
-## Getting Started
-
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/JSDWRLD/WRLD.io.git](https://github.com/JSDWRLD/WRLD.io.git)
-   Install dependencies:
-
-2. npm install
-
-3. Start the development server:
-   ```
-    npm run dev
-
-    Open your web browser and visit http://localhost:3000 to view the website.
-
 ### Acknowledgements
 
     React.js: https://reactjs.org/
