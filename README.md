@@ -32,6 +32,3 @@ N/A
     React.js: https://reactjs.org/
     Three.js: https://threejs.org/
     TailwindCSS: https://v2.tailwindcss.com/docs/
-
-## Contact
-John D. - jsdwrld@gmail.com
