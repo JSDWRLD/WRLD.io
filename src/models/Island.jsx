@@ -8,7 +8,7 @@ import { a } from '@react-spring/three'
 
 import islandScene from '../assets/3d/island.glb';
 
-const Island = ({isRotating, setIsRotating, ...props }) => {
+const Island = ({isRotating, setIsRotating, setCurrentStage, ...props }) => {
   const islandRef = useRef();
 
   const { gl, viewport } = useThree();
@@ -41,6 +41,7 @@ const Island = ({isRotating, setIsRotating, ...props }) => {
     e.stopPropagation();
     e.preventDefault();
 
+    // touches 0 is the first finger
     if(isRotating){
       const clientX = e.touches 
     ? e.touches[0].clientX 
