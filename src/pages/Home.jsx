@@ -7,6 +7,7 @@ import Sky from '../models/Sky';
 import Bird from '../models/Bird';
 import Plane from '../models/Plane';
 
+
 {/*<div className="className absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
         POPUP
       </div>*/}
@@ -53,11 +54,15 @@ const Home = () => {
         className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
         camera={{ near:0.1, far: 1000 }}
       >
-
       <Suspense fallback={<Loader />}>
-        <directionalLight position={[1, 1, 1]} intensity={2} />
-        <ambientLight intensity={0.5} />
-        <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1} />
+        <hemisphereLight skyColor="#050510" groundColor="#010105" intensity={0.1} /> {/* Subtle Starry Background */}
+        <directionalLight position={[5, -10, 20]} intensity={2} color="#0243ff" /> {/* Main "Sunlight" */}
+        <directionalLight position={[5, 10, 2]} intensity={1} color="white"/>
+        <spotLight position={[2, 10, -5]} intensity={0.4} angle={0.2} penumbra={0.8} color="white" />
+        <pointLight position={[-5, 2, -10]} intensity={0.2} color="#00bbff" /> {/* Rim Lighting */}
+        <ambientLight intensity={0.1} />
+        <fog attach="fog" color="#332255" near={30} far={750} /> 
+        <hemisphereLight skyColor="#00076f" groundColor="#e54ed0" intensity={1} />
 
         <Bird />
         <Sky 
@@ -77,8 +82,8 @@ const Home = () => {
           planePosition = {planePosition}
           rotation = {[0, 20, 0]}
         />
+        
       </Suspense>
-
       </Canvas>
     </section>
   )
