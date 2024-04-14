@@ -130,35 +130,139 @@ const Island = ({isRotating, setIsRotating, setCurrentStage, ...props }) => {
 
   return (
     <a.group ref={islandRef} {...props}>
+    <group scale={0.05}>
+      <group rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+        <mesh geometry={nodes.body_Material001_0.geometry} material={materials['Material.001']} />
+        <mesh geometry={nodes.body_Material002_0.geometry} material={materials['Material.002']} />
+      </group>
+      <group position={[-357.404, 392.646, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={39.706}>
+        <mesh
+          geometry={nodes.Sphere002_Material001_0.geometry}
+          material={materials['Material.001']}
+        />
+        <mesh
+          geometry={nodes.Sphere002_Material002_0.geometry}
+          material={materials['Material.002']}
+        />
+      </group>
+      <group
+        position={[199.634, 566.883, -221.001]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={39.706}>
+        <mesh
+          geometry={nodes.Sphere007_Material001_0.geometry}
+          material={materials['Material.001']}
+        />
+        <mesh
+          geometry={nodes.Sphere007_Material002_0.geometry}
+          material={materials['Material.002']}
+        />
+      </group>
       <mesh
-        geometry={nodes.polySurface944_tree_body_0.geometry}
-        material={materials.PaletteMaterial001}
+        geometry={nodes.waves_Material002_0.geometry}
+        material={materials['Material.002']}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[100, 100, 1.891]}
       />
       <mesh
-        geometry={nodes.polySurface945_tree1_0.geometry}
-        material={materials.PaletteMaterial001}
+        geometry={nodes.waves1_Material002_0.geometry}
+        material={materials['Material.002']}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[100, 100, 1.891]}
       />
       <mesh
-        geometry={nodes.polySurface946_tree2_0.geometry}
-        material={materials.PaletteMaterial001}
+        geometry={nodes.waves2_Material002_0.geometry}
+        material={materials['Material.002']}
+        position={[92.464, 15.529, 2.112]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[100, 100, 1.891]}
       />
       <mesh
-        geometry={nodes.polySurface947_tree1_0.geometry}
-        material={materials.PaletteMaterial001}
+        geometry={nodes.particles_Material002_0.geometry}
+        material={materials['Material.002']}
+        position={[489.69, 793.811, 355.293]}
+        rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+        scale={20.408}
       />
       <mesh
-        geometry={nodes.polySurface948_tree_body_0.geometry}
-        material={materials.PaletteMaterial001}
+        geometry={nodes.Sphere_Material001_0.geometry}
+        material={materials['Material.001']}
+        position={[375.469, 427.948, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={62.402}
       />
       <mesh
-        geometry={nodes.polySurface949_tree_body_0.geometry}
-        material={materials.PaletteMaterial001}
+        geometry={nodes.Sphere001_Material002_0.geometry}
+        material={materials['Material.002']}
+        position={[375.469, 427.948, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={60.324}
       />
       <mesh
-        geometry={nodes.pCube11_rocks1_0.geometry}
-        material={materials.PaletteMaterial001}
+        geometry={nodes.Sphere004_Material002_0.geometry}
+        material={materials['Material.002']}
+        position={[375.469, 427.948, 0]}
+        rotation={[-0.688, 0, 0]}
+        scale={[104.129, 81.609, 0]}
       />
-    </a.group>
+      <mesh
+        geometry={nodes.Sphere005_Material001_0.geometry}
+        material={materials['Material.001']}
+        position={[-341.988, 460.196, -117.028]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={62.402}
+      />
+      <mesh
+        geometry={nodes.Sphere006_Material002_0.geometry}
+        material={materials['Material.002']}
+        position={[-341.988, 460.196, -117.028]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={60.324}
+      />
+      <mesh
+        geometry={nodes.Sphere009_Material002_0.geometry}
+        material={materials['Material.002']}
+        position={[507.522, 667.594, -214.475]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={16.881}
+      />
+      <mesh
+        geometry={nodes.Sphere010_Material002_0.geometry}
+        material={materials['Material.002']}
+        position={[-287.442, 585.792, -311.857]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={16.881}
+      />
+      <mesh
+        geometry={nodes.Sphere011_Material002_0.geometry}
+        material={materials['Material.002']}
+        position={[-553.462, 331.074, -379.067]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={11.437}
+      />
+      <mesh
+        geometry={nodes.Cube_Material001_0.geometry}
+        material={materials['Material.001']}
+        position={[0, -101.673, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[1120.013, 1120.013, 100]}
+      />
+      <mesh
+        geometry={nodes.Sphere003_Material002_0.geometry}
+        material={materials['Material.002']}
+        position={[-357.404, 392.646, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={41.075}
+      />
+      <mesh
+        geometry={nodes.Sphere008_Material002_0.geometry}
+        material={materials['Material.002']}
+        position={[199.634, 566.883, -221.001]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={41.075}
+      />
+    </group>
+  </a.group>
   );
 }
 

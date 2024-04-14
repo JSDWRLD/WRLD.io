@@ -3,9 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import Loader  from '../components/Loader';
 
 import Island from '../models/Island';
-import Sky from '../models/Sky';
-import Bird from '../models/Bird';
-import Plane from '../models/Plane';
+
 
 
 {/*<div className="className absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
@@ -64,10 +62,6 @@ const Home = () => {
         <fog attach="fog" color="#332255" near={30} far={750} /> 
         <hemisphereLight skyColor="#00076f" groundColor="#e54ed0" intensity={1} />
 
-        <Bird />
-        <Sky 
-          isRotating= {isRotating}
-        />
         <Island 
           position = {islandPosition}
           scale = {islandScale}
@@ -75,12 +69,6 @@ const Home = () => {
           isRotating = {isRotating}
           setIsRotating = {setIsRotating}
           setCurrentStage = {setCurrentStage}
-        />
-        <Plane 
-          isRotating = {isRotating}
-          planeScale = {planeScale}
-          planePosition = {planePosition}
-          rotation = {[0, 20, 0]}
         />
         
       </Suspense>
