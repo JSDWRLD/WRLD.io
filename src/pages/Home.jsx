@@ -2,17 +2,12 @@ import { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import Loader  from '../components/Loader';
+import HomeInfo from '../components/HomeInfo';
 
 import Void from '../models/Void';
-import Sky from '../models/Sky';
 import Bean from '../models/Bean';
-import Plane from '../models/Plane';
 import BlackSkybox from '../models/BlackSkybox';
-
-
-{/*<div className="className absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-        POPUP
-      </div>*/}
+import Plane from '../models/Plane';
 
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
@@ -52,6 +47,10 @@ const Home = () => {
 
   return (
     <section className='w-full h-screen relative'>
+      <div className="className absolute top-28 left-0 right-0 z-10 flex items-center justify-center"  style={{ color: 'white' }}>
+          {currentStage && <HomeInfo currentStage={currentStage} />}
+      </div>
+
       <Canvas 
         className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
         camera={{ near:0.1, far: 1000 }}

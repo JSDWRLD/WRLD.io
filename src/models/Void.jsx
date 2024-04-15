@@ -8,6 +8,8 @@ import { a } from '@react-spring/three'
 
 import voidScene from '../assets/3d/void.glb';
 
+let sceneRotation = 0; 
+
 const Void = ({isRotating, setIsRotating, setCurrentStage, ...props }) => {
   const voidRef = useRef();
 
@@ -74,11 +76,31 @@ const Void = ({isRotating, setIsRotating, setCurrentStage, ...props }) => {
 
   // on every single frame, hook comes from react three fiber
   useFrame(() => {
-    if(!isRotating) {
-      // if it is not rotating apply damping factor to slow down
-      rotationSpeed.current *= dampingFactor;
+    // Automatic rotation (only when not interacting)
+    if (!isRotating) { 
+      sceneRotation += 0.003; 
+    } else {
+      // Reset sceneRotation to follow user input if needed
+      if (Math.abs(rotationSpeed.current) > 0.01) { // Check if user input is significant
+        sceneRotation = voidRef.current.rotation.y - rotationSpeed.current; 
+      }
+    }
+    // Apply combined rotation
+    voidRef.current.rotation.y = sceneRotation + rotationSpeed.current;
 
-      if(Math.abs(rotationSpeed.current < 0.001)) rotationSpeed.current = 0;
+    if(!isRotating) {
+      // Calculate correct direction based on existing rotation speed
+      let direction = Math.sign(rotationSpeed.current); 
+      if (direction === 0 ) { // Handle case where speed is exactly 0 
+          direction = 1;  // Default to positive rotation.
+      }
+
+      // Apply damping and preserve direction
+      rotationSpeed.current = Math.abs(rotationSpeed.current) * dampingFactor * direction;
+
+      if (Math.abs(rotationSpeed.current) < 0.001) {
+          rotationSpeed.current = 0;
+      }
 
       voidRef.current.rotation.y += rotationSpeed.current;
     } else {
@@ -130,7 +152,7 @@ const Void = ({isRotating, setIsRotating, setCurrentStage, ...props }) => {
 
   return (
     <a.group ref={voidRef} {...props}>
-    <group scale={0.05}>
+    <group scale={0.05} rotation={[0,5.9,0]}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={100}>
         <mesh geometry={nodes.body_Material001_0.geometry} material={materials['Material.001']} />
         <mesh geometry={nodes.body_Material002_0.geometry} material={materials['Material.002']} />

@@ -35,7 +35,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .blue-gradient_text {
-    @apply bg-gradient-to-r from-[#ffaca3] to-[#ce1500] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#f5fed1] to-[#bae901] bg-clip-text text-transparent;
   }
 
   .input {
@@ -63,11 +63,11 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .info-box {
-    @apply mx-5 relative flex text-white flex-col gap-3 max-w-2xl neo-brutalism-blue pt-4 pb-12 px-8;
+    @apply mx-5 relative flex text-white flex-col gap-3 max-w-2xl neo-brutalism-red pt-4 pb-12 px-8;
   }
 
   .neo-btn {
-    @apply py-3 px-6 rounded-lg text-blue-500 text-center font-semibold sm:w-1/2 w-[90%] -bottom-5 absolute mx-auto right-0 left-0 flex justify-center items-center gap-3;
+    @apply py-3 px-6 rounded-lg  text-white text-center font-semibold sm:w-1/2 w-[90%] -bottom-5 absolute mx-auto right-0 left-0 flex justify-center items-center gap-3;
   }
 
   .cta {
@@ -166,18 +166,25 @@ body:has(.card[data-color="green"]:hover) {
 }
 
 /* Neo Brutalism */
-.neo-brutalism-blue {
-  background: #2b77e7;
+.neo-brutalism-red { /* Consider renaming this class */
+  background: #95d600; /* Your Monster Energy green hex code */
+  background-color: rgba(149, 214, 0, 0.25); /* Adjust transparency if needed */
   position: relative;
   border-radius: 10px;
-  border: #2b77e7;
-  box-shadow: 0.6vmin 0.6vmin #336cc1, 1vmin 1vmin #0092db, 1vmin 1vmin #0092db,
-    0.65vmin 1vmin #0092db, 1vmin 0.65vmin #0092db;
-}
+  border: #95d600;  
+  box-shadow: 
+    0.3vmin 0.3vmin rgba(149, 214, 0, 0.2), 
+    0.6vmin 0.6vmin rgba(100, 150, 0, 0.15), 
+    1vmin 1vmin rgba(60, 100, 0, 0.1);
+ }
 
+ /* Updated Neo-Brutalism White (Complementary Color and Shadows)*/
 .neo-brutalism-white {
   background: #fff;
+  background-color: rgba(149, 214, 0, 0.367); /* Adjust transparency if needed */
   border: #fff;
-  box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
-    0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
+  box-shadow: 
+    0.3vmin 0.3vmin rgba(149, 214, 0, 0.3), 
+    0.6vmin 0.6vmin rgba(149, 214, 0, 0.2),
+    1vmin 1vmin rgba(240, 240, 255, 0.1);   
 }
