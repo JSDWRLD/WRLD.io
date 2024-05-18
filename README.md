@@ -1,4 +1,4 @@
-# WRLD.io (In Production)
+# WRLD.io
 
 Welcome to WRLD.io! This project showcases a dynamic and immersive 3D visualization experience developed using React.js, Three.js, and Tailwind CSS.
 
