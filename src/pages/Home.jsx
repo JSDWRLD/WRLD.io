@@ -7,7 +7,7 @@ import HomeInfo from '../components/HomeInfo';
 import Void from '../models/Void';
 import Bean from '../models/Bean';
 import BlackSkybox from '../models/BlackSkybox';
-import Plane from '../models/Plane';
+
 
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
