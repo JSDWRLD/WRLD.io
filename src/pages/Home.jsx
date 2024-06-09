@@ -1,5 +1,9 @@
 import { Suspense, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Scroll, ScrollControls, useScroll } from '@react-three/drei';
+import { getProject, val } from '@theatre/core';
+import { SheetProvider, PerspectiveCamera, useCurrentSheet } from '@theatre/r3f';
+
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import Loader  from '../components/Loader';
 import HomeInfo from '../components/HomeInfo';
@@ -10,6 +14,8 @@ import BlackSkybox from '../models/BlackSkybox';
 
 
 const Home = () => {
+  const sheet = getProject('Scroll Planet').sheet('Scene')
+
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState(1);
 
@@ -53,49 +59,75 @@ const Home = () => {
 
       <Canvas 
         className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
-        camera={{ near:0.1, far: 1000 }}
+        gl = {{ preserveDrawingBuffer: true }}
       >
-      <Suspense fallback={<Loader />}>
-        <hemisphereLight skyColor="#000000" groundColor="#000000" intensity={0.1} /> {/* Subtle Starry Background */}
-        <directionalLight position={[5, 10, 2]} intensity={1} color="white"/>
-        <spotLight position={[2, 10, -5]} intensity={0.1} angle={0.2} penumbra={0.8} color="white" />
-        <pointLight position={[-5, 2, -10]} intensity={0.5} color="#00bbff" /> {/* Rim Lighting */}
-        <ambientLight intensity={0.3} />
-        <BlackSkybox />
-        <EffectComposer>
-            <Bloom 
-              luminanceThreshold={0.8} // Adjust to target brighter areas
-              luminanceSmoothing={0.06} // Adjust for desired bloom softness
+        <ScrollControls>
+          <SheetProvider sheet={sheet}>
+            <Scene 
+              voidScale={voidScale}
+              voidPosition={voidPosition}
+              voidRotation={voidRotation}
+              isRotating={isRotating}
+              setIsRotating={setIsRotating}
+              setCurrentStage={setCurrentStage}
             />
-        </EffectComposer>
-        <Bean />
-        
-        {/*<Sky 
-          isRotating= {isRotating}
-        />
-        */}
-
-        <Void 
-          position = {voidPosition}
-          scale = {voidScale}
-          rotation = {voidRotation}
-          isRotating = {isRotating}
-          setIsRotating = {setIsRotating}
-          setCurrentStage = {setCurrentStage}
-        />
-        {/*
-        <Plane 
-          isRotating = {isRotating}
-          planeScale = {planeScale}
-          planePosition = {planePosition}
-          rotation = {[0, 20, 0]}
-        />
-        */}
-        
-      </Suspense>
+          </SheetProvider>
+        </ScrollControls>
       </Canvas>
     </section>
   )
 }
 
 export default Home
+
+//
+//
+
+function Scene({ voidScale, voidPosition, voidRotation, isRotating, setIsRotating, setCurrentStage }) {
+  const sheet = useCurrentSheet()
+  const scroll = useScroll()
+
+  useFrame(() => {
+    const sequenceLength = val (sheet.sequence.pointer.length)
+
+    sheet.sequence.position = scroll.offset * sequenceLength
+  })
+
+  
+
+  return (
+    <>
+        <Suspense fallback={<Loader />}>
+          <hemisphereLight skyColor="#000000" groundColor="#000000" intensity={0.1} /> {/* Subtle Starry Background */}
+          <directionalLight position={[5, 10, 2]} intensity={1} color="white"/>
+          <spotLight position={[2, 10, -5]} intensity={0.1} angle={0.2} penumbra={0.8} color="white" />
+          <pointLight position={[-5, 2, -10]} intensity={0.5} color="#00bbff" /> {/* Rim Lighting */}
+          <ambientLight intensity={0.3} />
+          <BlackSkybox />
+          <EffectComposer>
+              <Bloom 
+                luminanceThreshold={0.8} // Adjust to target brighter areas
+                luminanceSmoothing={0.06} // Adjust for desired bloom softness
+              />
+          </EffectComposer>
+          <Bean />
+          <Void 
+            position = {voidPosition}
+            scale = {voidScale}
+            rotation = {voidRotation}
+            isRotating = {isRotating}
+            setIsRotating = {setIsRotating}
+            setCurrentStage = {setCurrentStage}
+          />
+        </Suspense>
+        <PerspectiveCamera 
+          theatreKey='Camera'
+          makeDefault
+          position={[0, 0, 0]}
+          fov={90}
+          near={0.1}
+          far={70}
+        />
+    </>
+  )
+}

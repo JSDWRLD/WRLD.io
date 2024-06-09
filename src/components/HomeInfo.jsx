@@ -48,7 +48,8 @@ const renderContent = {
 }
 
 const HomeInfo = ({currentStage}) => {
-  return renderContent[currentStage] || null;
+  // return renderContent[currentStage] || null;
+  return null;
 }
 
 export default HomeInfo
