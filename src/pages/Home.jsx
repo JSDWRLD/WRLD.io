@@ -119,7 +119,6 @@ function Scene({ voidScale, voidPosition, voidRotation, isRotating, setIsRotatin
               />
           </EffectComposer>
           <Bean />
-          
           <Void 
             position = {voidPosition}
             scale = {voidScale}
