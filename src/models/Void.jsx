@@ -9,6 +9,7 @@ import { a } from '@react-spring/three'
 import voidScene from '../assets/3d/void.glb';
 
 let sceneRotation = 0; 
+const defaultYPos = 0;
 
 const Void = ({isRotating, setIsRotating, setCurrentStage, ...props }) => {
   const voidRef = useRef();
@@ -73,20 +74,27 @@ const Void = ({isRotating, setIsRotating, setCurrentStage, ...props }) => {
   const handleKeyUp = (e) => {
     if(e.key === 'ArrowLeft' || e.key === 'ArrowRight') setIsRotating(false);
   }
+  
 
   // on every single frame, hook comes from react three fiber
   useFrame(() => {
     // Automatic rotation (only when not interacting)
-    if (!isRotating) { 
-      sceneRotation += 0.003; 
+    if (!isRotating) {
+      rotationSpeed.current = 0; // Stops the rotation by setting speed to zero
     } else {
-      // Reset sceneRotation to follow user input if needed
-      if (Math.abs(rotationSpeed.current) > 0.01) { // Check if user input is significant
-        sceneRotation = voidRef.current.rotation.y - rotationSpeed.current; 
-      }
+      // Continues or starts rotation
+      sceneRotation += 0.003; // You can adjust this value for different rotation speeds
     }
     // Apply combined rotation
     voidRef.current.rotation.y = sceneRotation + rotationSpeed.current;
+
+    if (!isRotating) {
+      // Apply default rotation when not rotating
+      voidRef.current.rotation.y = defaultYPos;
+    } else {
+      // Continue applying dynamic rotation based on user interaction or automatic animation
+      voidRef.current.rotation.y += rotationSpeed.current;
+    }
 
     if(!isRotating) {
       // Calculate correct direction based on existing rotation speed

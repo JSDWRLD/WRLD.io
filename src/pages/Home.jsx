@@ -1,8 +1,8 @@
 import { Suspense, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Scroll, ScrollControls, useScroll } from '@react-three/drei';
+import { Scroll, ScrollControls, useScroll, Text } from '@react-three/drei';
 import { getProject, val } from '@theatre/core';
-import { SheetProvider, PerspectiveCamera, useCurrentSheet } from '@theatre/r3f';
+import { SheetProvider, PerspectiveCamera, useCurrentSheet, editable } from '@theatre/r3f';
 
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import Loader  from '../components/Loader';
@@ -12,9 +12,12 @@ import Void from '../models/Void';
 import Bean from '../models/Bean';
 import BlackSkybox from '../models/BlackSkybox';
 
+import { useNavigate } from 'react-router-dom';
+
 
 const Home = () => {
   const sheet = getProject('Scroll Planet').sheet('Scene')
+  const navigate = useNavigate();
 
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState(1);
@@ -33,23 +36,14 @@ const Home = () => {
     return [ screenScale, screenPosition, rotation ]
   }
 
-  const adjustPlaneForScreenSize = () => {
-    let screenScale, screenPosition;
-
-
-    if(window.innerWidth < 768){
-      screenScale = [1.5, 1.5, 1.5];
-      screenPosition = [0, -1.5, 0];
-    } else {
-      screenScale = [3, 3, 3];
-      screenPosition = [0, -4, -4];
-    }
-
-    return [ screenScale, screenPosition ]
-  }
-
   const [ voidScale, voidPosition, voidRotation ] = adjustVoidForScreenSize();
-  const [ planeScale, planePosition ] = adjustPlaneForScreenSize();
+
+
+  // 
+  const TheatreText = editable(Text, "mesh");
+  const handleClick = () => {
+    navigate('/about')
+  }
 
   return (
     <section className='w-full h-screen relative'>
@@ -58,10 +52,10 @@ const Home = () => {
       </div>
 
       <Canvas 
-        className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
+        className={`w-full h-screen bg-transparent`}
         gl = {{ preserveDrawingBuffer: true }}
       >
-        <ScrollControls>
+        <ScrollControls pages={5} damping={0.75}>
           <SheetProvider sheet={sheet}>
             <Scene 
               voidScale={voidScale}
@@ -70,6 +64,16 @@ const Home = () => {
               isRotating={isRotating}
               setIsRotating={setIsRotating}
               setCurrentStage={setCurrentStage}
+            />
+            <TheatreText 
+              theatreKey='TEXT'
+              text="Welcome to My WRLD"
+              position={[3, 5, -30]}
+              rotation={[0, 0, 0]}
+              scale={1}
+              color="white"
+              font='src/assets/fonts/Neuropol.otf'
+              onClick={handleClick}
             />
           </SheetProvider>
         </ScrollControls>
@@ -87,13 +91,17 @@ function Scene({ voidScale, voidPosition, voidRotation, isRotating, setIsRotatin
   const sheet = useCurrentSheet()
   const scroll = useScroll()
 
-  useFrame(() => {
-    const sequenceLength = val (sheet.sequence.pointer.length)
+  useFrame((state, delta) => {
+    const sequenceLength = val(sheet.sequence.pointer.length);
+    sheet.sequence.position = scroll.offset * sequenceLength;
 
-    sheet.sequence.position = scroll.offset * sequenceLength
-  })
-
-  
+    // Disable rotation when scrolling
+    if (scroll.offset !== 0 && isRotating) {
+      setIsRotating(false);
+    } else if (scroll.offset === 0 && !isRotating) {
+      setIsRotating(true);
+    }
+  });
 
   return (
     <>
@@ -111,6 +119,7 @@ function Scene({ voidScale, voidPosition, voidRotation, isRotating, setIsRotatin
               />
           </EffectComposer>
           <Bean />
+          
           <Void 
             position = {voidPosition}
             scale = {voidScale}
