@@ -39,10 +39,16 @@ const Home = () => {
   const [ voidScale, voidPosition, voidRotation ] = adjustVoidForScreenSize();
 
 
-  // 
+  // Animated Text
   const TheatreText = editable(Text, "mesh");
-  const handleClick = () => {
+  const handleAbout = () => {
     navigate('/about')
+  }
+  const handleProjects = () => {
+    navigate('/projects')
+  }
+  const handleContact = () => {
+    navigate('/contact')
   }
 
   return (
@@ -67,13 +73,48 @@ const Home = () => {
             />
             <TheatreText 
               theatreKey='TEXT'
-              text="Welcome to My WRLD"
+              text="Welcome to My World"
               position={[3, 5, -30]}
               rotation={[0, 0, 0]}
               scale={1}
               color="white"
               font='src/assets/fonts/Neuropol.otf'
-              onClick={handleClick}
+            />
+            <TheatreText 
+              theatreKey='ABOUT'
+              text="Learn About Me"
+              position={[-19.38, 18.76, -50.9]}
+              rotation={[0.48, 0.59, 0]}
+              scale={1}
+              color="white"
+              font='src/assets/fonts/Neuropol.otf'
+              onClick={handleAbout}
+              onPointerOver={e => e.stopPropagation() || (document.body.style.cursor = 'pointer')}
+              onPointerOut={e => document.body.style.cursor = 'auto'}
+            />
+            <TheatreText 
+              theatreKey='Projects'
+              text="View my Projects"
+              position={[13, 25, -47]}
+              rotation={[-0.37, -1, 0]}
+              scale={1}
+              color="white"
+              font='src/assets/fonts/Neuropol.otf'
+              onClick={handleProjects}
+              onPointerOver={e => e.stopPropagation() || (document.body.style.cursor = 'pointer')}
+              onPointerOut={e => document.body.style.cursor = 'auto'}
+            />
+            <TheatreText 
+              theatreKey='CONTACT'
+              text="Contact Me"
+              position={[16, 17, -32]}
+              rotation={[0, -0.7, 0]}
+              scale={1}
+              color="white"
+              font='src/assets/fonts/Neuropol.otf'
+              onClick={handleContact}
+              onPointerOver={e => e.stopPropagation() || (document.body.style.cursor = 'pointer')}
+              onPointerOut={e => document.body.style.cursor = 'auto'}
             />
           </SheetProvider>
         </ScrollControls>
