@@ -5,13 +5,14 @@ import { useRef, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { a } from '@react-spring/three'
+import { tween } from '@theatre/core';
 
 import voidScene from '../assets/3d/void.glb';
 
 let sceneRotation = 0; 
 const defaultYPos = 0;
 
-const Void = ({isRotating, setIsRotating, setCurrentStage, ...props }) => {
+const Void = ({isRotating, ...props }) => {
   const voidRef = useRef();
 
   const { gl, viewport } = useThree();
@@ -60,22 +61,6 @@ const Void = ({isRotating, setIsRotating, setCurrentStage, ...props }) => {
     rotationSpeed.current = delta * 0.01 * Math.PI;
     }
   }
-
-  // handles keyboard down or up
-  const handleKeyDown = (e) => {
-    if(e.key === 'ArrowLeft') {
-      if(!isRotating) setIsRotating(true);
-      voidRef.current.rotation.y += 0.01 * Math.PI;
-    } else if (e.key === 'ArrowRight') {
-      if(!isRotating) setIsRotating(true);
-      voidRef.current.rotation.y -= 0.01 * Math.PI;
-    }
-  } 
-  const handleKeyUp = (e) => {
-    if(e.key === 'ArrowLeft' || e.key === 'ArrowRight') setIsRotating(false);
-  }
-  
-
   // on every single frame, hook comes from react three fiber
   useFrame(() => {
     // Automatic rotation (only when not interacting)
@@ -91,6 +76,7 @@ const Void = ({isRotating, setIsRotating, setCurrentStage, ...props }) => {
     if (!isRotating) {
       // Apply default rotation when not rotating
       voidRef.current.rotation.y = defaultYPos;
+      
     } else {
       // Continue applying dynamic rotation based on user interaction or automatic animation
       voidRef.current.rotation.y += rotationSpeed.current;
@@ -117,23 +103,6 @@ const Void = ({isRotating, setIsRotating, setCurrentStage, ...props }) => {
       // math for ensuring we stay with in 2pi radians
       const normalizedRotation = ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
-      // Set the current stage based on the Void's orientation, stages are text popup
-      switch (true) {
-        case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
-          setCurrentStage(4);
-          break;
-        case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
-          setCurrentStage(3);
-          break;
-        case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
-          setCurrentStage(2);
-          break;
-        case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
-          setCurrentStage(1);
-          break;
-        default:
-          setCurrentStage(null);
-      }
     }
   });
 
@@ -145,16 +114,11 @@ const Void = ({isRotating, setIsRotating, setCurrentStage, ...props }) => {
     canvas.addEventListener('pointerdown', handlePointerDown);
     canvas.addEventListener('pointerup', handlePointerUp);
     canvas.addEventListener('pointermove', handlePointerMove);
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('keyup', handleKeyUp);
-
     return () => {
       // removing events once we exit page
       canvas.removeEventListener('pointerdown', handlePointerDown);
       canvas.removeEventListener('pointerup', handlePointerUp);
       canvas.removeEventListener('pointermove', handlePointerMove);
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('keyup', handleKeyUp);
     }
   }, [ gl, handlePointerDown, handlePointerUp, handlePointerMove ]);
 

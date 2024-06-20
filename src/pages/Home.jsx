@@ -6,21 +6,20 @@ import { SheetProvider, PerspectiveCamera, useCurrentSheet, editable } from '@th
 
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import Loader  from '../components/Loader';
-import HomeInfo from '../components/HomeInfo';
 
 import Void from '../models/Void';
 import Bean from '../models/Bean';
 import BlackSkybox from '../models/BlackSkybox';
+import planets from '../assets/flyplanets.json';
 
 import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
-  const sheet = getProject('Scroll Planet').sheet('Scene')
+  const sheet = getProject('Scroll Planet', { state: planets}).sheet('Scene')
   const navigate = useNavigate();
 
   const [isRotating, setIsRotating] = useState(false);
-  const [currentStage, setCurrentStage] = useState(1);
 
   const adjustVoidForScreenSize = () => {
     let screenScale = null;
@@ -54,7 +53,6 @@ const Home = () => {
   return (
     <section className='w-full h-screen relative'>
       <div className="className absolute top-28 left-0 right-0 z-10 flex items-center justify-center"  style={{ color: 'white' }}>
-          {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>
 
       <Canvas 
@@ -69,13 +67,12 @@ const Home = () => {
               voidRotation={voidRotation}
               isRotating={isRotating}
               setIsRotating={setIsRotating}
-              setCurrentStage={setCurrentStage}
             />
             <TheatreText 
               theatreKey='TEXT'
               text="Welcome to My World"
-              position={[3, 5, -30]}
-              rotation={[0, 0, 0]}
+              position={[-0.577, 9.66, -35.22]}
+              rotation={[0, 0.35, 0]}
               scale={1}
               color="white"
               font='src/assets/fonts/Neuropol.otf'
@@ -83,7 +80,7 @@ const Home = () => {
             <TheatreText 
               theatreKey='ABOUT'
               text="Learn About Me"
-              position={[-19.38, 18.76, -50.9]}
+              position={[-19.38, 21.76, -50.9]}
               rotation={[0.48, 0.59, 0]}
               scale={1}
               color="white"
@@ -95,7 +92,7 @@ const Home = () => {
             <TheatreText 
               theatreKey='Projects'
               text="View my Projects"
-              position={[13, 25, -47]}
+              position={[13.789, 25.262, -48.818]}
               rotation={[-0.37, -1, 0]}
               scale={1}
               color="white"
@@ -107,7 +104,7 @@ const Home = () => {
             <TheatreText 
               theatreKey='CONTACT'
               text="Contact Me"
-              position={[16, 17, -32]}
+              position={[16.693, 17.477, -32.65]}
               rotation={[0, -0.7, 0]}
               scale={1}
               color="white"
@@ -166,7 +163,6 @@ function Scene({ voidScale, voidPosition, voidRotation, isRotating, setIsRotatin
             rotation = {voidRotation}
             isRotating = {isRotating}
             setIsRotating = {setIsRotating}
-            setCurrentStage = {setCurrentStage}
           />
         </Suspense>
         <PerspectiveCamera 
