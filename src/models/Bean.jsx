@@ -41,7 +41,7 @@ const Bean = () => {
   })
 
   return (
-   <mesh ref={beanRef} position={[-5,2,1]} scale={[0.1, 0.1, 0.1]}>
+   <mesh ref={beanRef} position={[-5,1,-10]} scale={[0.1, 0.1, 0.1]}>
     <primitive object={scene} />
    </mesh>
   )
