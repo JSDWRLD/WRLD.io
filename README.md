@@ -11,7 +11,7 @@ N/A
 
 ## Features
 
-* Interactive 3D model rotation and movement animations.
+* Interactive 3D model rotation and scrolling animations.
 * Engaging custom shaders to enhance visual appeal.
 * Seamless integration of Three.js and React.js
 * Optimized routing architecture with React Router DOM and component-based code splitting.
