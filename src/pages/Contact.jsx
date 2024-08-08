@@ -1,4 +1,5 @@
 import { Suspense, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const formRef = useRef(null);
