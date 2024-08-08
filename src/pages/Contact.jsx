@@ -10,13 +10,43 @@ const Contact = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handleFocus = () => setCurrentAnimation("walk"); // Called on click
-  const handleBlur = () => setCurrentAnimation("idle"); // Called on click out
+  const handleFocus = () => {}; // Called on click
+  const handleBlur = () => {}; // Called on click out
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
 
+    emailjs
+      .send(
+        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          to_name: "John Dong",
+          from_email: form.email,
+          to_email: "jsdwrld@gmail.com",
+          message: form.message,
+        },
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setLoading(false);
+          
+          setTimeout(() => {
+            setForm({
+              name: "",
+              email: "",
+              message: "",
+            });
+          }, [3000]);
+      })
+      .catch((error) => {
+        setLoading(false);
+          console.error(error);
+
+      })
   }
 
   return (
