@@ -8,6 +8,7 @@ WRLD.io is a project aimed at delivering an engaging user experience through the
 
 ## Demo
 N/A
+To is to include gif of website or live link
 
 ## Features
 
