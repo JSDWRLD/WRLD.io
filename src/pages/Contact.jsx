@@ -22,7 +22,6 @@ const Contact = () => {
 
   const handleFocus = () => {}; // Called on click
   const handleBlur = () => {}; // Called on click out
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
