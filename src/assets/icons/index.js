@@ -16,6 +16,21 @@ import tailwindcss from './tailwindcss.svg'
 import typescript from './typescript.svg'
 import linkedin from './linkedin.svg'
 import twitter from './twitter.svg'
+import unity from './unity.svg'
+import c from './c.svg'
+import cplus from './cplus.svg'
+import android from './android.svg'
+import python from './python.svg'
+import sql from './sql.svg'
+import kotlin from './kotlin.svg'
+import go from './go.svg'
+import dotnet from './dotnet.svg'
+import csharp from './csharp.svg'
+import java from './java.svg'
+import firebase from './firebase.svg'
+import blender from './blender.svg'
+import azure from './azure.svg'
+import aws from './aws.svg'
 import car from './car.svg'
 import estate from './estate.svg'
 import pricewise from './pricewise.svg'
@@ -46,6 +61,21 @@ export {
     typescript,
     linkedin,
     twitter,
+    unity,
+    c,
+    cplus,
+    android,
+    python,
+    sql,
+    kotlin,
+    go,
+    dotnet,
+    csharp,
+    java,
+    firebase,
+    blender,
+    azure,
+    aws,
     car,
     estate,
     pricewise,
