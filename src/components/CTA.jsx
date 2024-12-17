@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+// TODO SETUP EMAIL JS
 const CTA = () => {
   return (
     <section
