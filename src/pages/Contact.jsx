@@ -43,6 +43,10 @@ const Contact = () => {
         () => {
           setLoading(false);
           showAlert({ show: true, text: 'Message sent successfully!', type: 'success'})
+
+          setTimeout(() => {
+            hideAlert(); // Call the hideAlert function after 3 seconds
+          }, 3000); // 3000 milliseconds = 3 seconds    
           
           setTimeout(() => {
             setForm({

@@ -18,6 +18,7 @@
     "@theatre/core": "^0.7.2",
     "@theatre/r3f": "^0.7.2",
     "@theatre/studio": "^0.7.2",
+    "emailjs": "^4.0.3",
     "framer-motion": "^11.14.4",
     "gasp": "^0.0.2",
     "math": "^0.0.3",
