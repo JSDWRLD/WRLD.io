@@ -22,34 +22,12 @@ const About = () => {
 
       <div className="mt-5 flex flex-col gap-3 text-white">
         <p>
-          A Software Engineer who is graduating in Fall 2025 with 3x Software Engineering Internships, 7x Tech Competiton awards, and a 3.9 GPA.
+          A Software Engineer who is graduating in Fall 2025 with 3 Software Engineering Internships, 7 Tech Competiton awards totaling $30,000, and a 3.9 GPA.
         </p>
       </div>
 
-      <div className="py-10 flex flex-col">
-        <h3 className="subhead-text text-white">My Skills</h3>
-
-        <div className="mt-16 flex flex-wrap gap-12">
-          {skills.map((skill) => (
-            <div
-              className="block-container w-20 h-20 bg-gray-800 rounded-lg"
-              key={skill.name}
-            >
-              <div className="btn-back rounded-xl bg-gray-900" /> 
-              <div className="btn-front rounded-xl flex justify-center items-center bg-gray-800">
-                <img
-                  src={skill.imageUrl}
-                  alt={skill.name}
-                  className="w-1/2 h-1/2 object-contain"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       <div className="py-16">
-        <h3 className="subhead-text text-white">Work Experience.</h3>
+        <h3 className="subhead-text text-white">Work Experience</h3>
         <div className="mt-5 flex flex-col gap-3 text-white">
           <p>
             Here's a sneak peak into some of the amazing places I have been at:
@@ -108,6 +86,28 @@ const About = () => {
               </VerticalTimelineElement>
             ))}
           </VerticalTimeline>
+        </div>
+      </div>
+
+      <div className="py-10 flex flex-col">
+        <h3 className="subhead-text text-white">Technical Skills</h3>
+
+        <div className="mt-16 flex flex-wrap gap-12">
+          {skills.map((skill) => (
+            <div
+              className="block-container w-20 h-20 bg-gray-800 rounded-lg"
+              key={skill.name}
+            >
+              <div className="btn-back rounded-xl bg-gray-900" /> 
+              <div className="btn-front rounded-xl flex justify-center items-center bg-gray-800">
+                <img
+                  src={skill.imageUrl}
+                  alt={skill.name}
+                  className="w-1/2 h-1/2 object-contain"
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
