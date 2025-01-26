@@ -193,10 +193,10 @@ export const experiences = [
         iconBg: "#dde6ff",
         date: "June 2024 - Present",
         points: [
-            "Developed a Kotlin library to interface with SOAP Web Service APIs, enabling the automation of snapshot processing and RTSP stream capturing, thereby streamlining video management tasks.",
-            "Utilized Kotlin coroutines to manage asynchronous tasks for downloading camera snapshots, preventing main thread backups and improving application responsiveness.",
-            "Replaced VLC library with Android ExoPlayer for handling video feeds from 8 cameras, decreasing memory leaks by 60% and improving video processing speed by 50%.",
-            "Engineered port forwarding and virtual server configurations to ensure stable communication between cameras through a single router, achieving a 100% success rate in connections and cutting network setup time by 30%.",
+            "Developed a Kotlin library to interface with SOAP Web Service APIs, enabling the automation of snapshot processing and RTSP stream capturing, streamlining video management tasks.",
+            "Utilized Kotlin coroutines to manage asynchronous tasks for capturing frames from RTSP streams, preventing main thread backups and enhancing application responsiveness.",
+            "Replaced VLC library with a custom ExoPlayer implementation for handling video feeds from 8 cameras, reducing memory leaks by 60% and boosting video processing speed by 50%.",
+            "Optimized the codebase by implementing MVVM architecture, increasing app performance, improving maintainability, and reducing reported bugs and technical debt by 40%.",
         ],
     },
     {
@@ -204,11 +204,11 @@ export const experiences = [
         company_name: "California State University Sacramento",
         icon: csus,
         iconBg: "#f7ffd5",
-        date: "August 2024 - Present",
+        date: "August 2024 - January 2025",
         points: [
-            "Managed and organized multiple computer science courses on Canvas, ensuring a seamless digital learning environment for over 200 students.",
-            "Collaborated with professors to design and develop course materials, aligning content with current industry standards and programming best practices and principles.",
-            "Provided technical support and guidance to students, helping them troubleshoot coding issues and enhancing their problem-solving skills.",
+            "Managed and organized multiple computer science courses on Canvas, providing a seamless digital learning experience for over 200 students, and maintaining a 85% overall course average across sections.",
+            "Collaborated with professors to design and develop course materials, ensuring alignment with current educational standards and programming best practices.",
+            "Provided technical support to students, troubleshooting coding issues and enhancing problem-solving skills, which led to improved exam performance.",
         ],
     },
     {
@@ -220,7 +220,7 @@ export const experiences = [
         points: [
             "Collaborate with a team of developers to design and integrate REST APIs using Go, enhancing data interaction capabilities with MongoDB and incorporating third-party user authentication with platforms like Google.",
             "Managed version control with Git, which ensured code consistency and improved project tracking.",
-            "Ensured seamless intergration with Flutter frontend.",
+            "Ensured seamless intergration between backend and Flutter frontend.",
             "Participating in code reviews and providing constructive feedback to other developers.",
         ],
     },
